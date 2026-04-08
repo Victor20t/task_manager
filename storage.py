@@ -1,17 +1,23 @@
 import json
 
-lista_tarefas = []
+lista = []
 
 def salvar_tarefa(tarefa):
-    lista_tarefas.append(tarefa)
-    print(lista_tarefas)
+    lista.append(tarefa)
+    with open("tasks.json", "w") as f:
+        json.dump(lista, f)
+
+def listar():
+    with open("tasks.json", "r") as f:
+        tarefas = json.load(f)
+        print(tarefas)
 
 
-def salvar_json():
-    with open("tasks.json", 'a') as f: 
-        json.dump(lista_tarefas, f)
 
-def ler_json():
-  with open('tasks.json', 'r') as arquivo:
-    conteudo = json.load(arquivo)
-    print(conteudo)
+
+
+
+
+
+
+

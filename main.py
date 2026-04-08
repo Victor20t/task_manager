@@ -19,9 +19,13 @@ def executar_menu(opcao):
         if opcao == 1: 
             print("Executando adicionar_task")
             task_manager.adicionar_task()
-        elif opcao== 2: 
+        elif opcao == 2: 
             print("Executando listar tarefas")
-            task_manager.listar_tarefas()
+            storage.listar()
+        elif opcao ==3:
+            print("Executado")
+        elif opcao == 4:
+            print("executado")
         elif opcao == 0:
             return False
         return True
