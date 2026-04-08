@@ -15,10 +15,15 @@ def adicionar_task():
     nova_tarefa = { 
         "dia":dia_task,
         "id":id_task,
-        "tarefa":tarefa,
+         "tarefa":tarefa,
         "satatus":concluida
-    }
+        }
+
 
     storage.salvar_tarefa(nova_tarefa)
-    
+
     print("tarefa salva")
+
+def listar_tarefas():
+    storage.ler_json()
+

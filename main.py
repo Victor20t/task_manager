@@ -16,9 +16,16 @@ def receber_opcao():
     return opcao 
 
 def executar_menu(opcao):
-    if opcao == 1: 
-        print("Executando adicionar_task")
-        task_manager.adicionar_task()
+        if opcao == 1: 
+            print("Executando adicionar_task")
+            task_manager.adicionar_task()
+        elif opcao== 2: 
+            print("Executando listar tarefas")
+            task_manager.listar_tarefas()
+        elif opcao == 0:
+            return False
+        return True
+            
 
 def main():
     rodando = True
