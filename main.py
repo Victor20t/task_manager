@@ -1,35 +1,27 @@
-import task_manager 
-import storage
+import task_manager
 
-
-print("\nTask Manager ")
-
-def exibir_menu():
-    print("1 - adiconar tarefa")
-    print("2 - listar tarrefas")
-    print("3 - concluir tarefa ")
-    print("4 - remover tarefa")
-    print("0 - sair ")
+print("LISTA DE TAREFAS SUPREMA")
 
 def receber_opcao():
-    opcao = int(input("digite a opção: "))
-    return opcao 
+    opcao = int(input("Digite uma opção: "))
+    return opcao
+
+def exibir_menu():
+    print("Opções: ")
+    print("1. Adicionar tarefa")
+    print("2. Exibir lista de tarefas")
+    print("0. Sair")
 
 def executar_menu(opcao):
-        if opcao == 1: 
-            print("Executando adicionar_task")
-            task_manager.adicionar_task()
-        elif opcao == 2: 
-            print("Executando listar tarefas")
-            storage.listar()
-        elif opcao ==3:
-            print("Executado")
-        elif opcao == 4:
-            print("executado")
-        elif opcao == 0:
-            return False
-        return True
-            
+    if opcao == 1:
+        task_manager.adicionar_tarefa()
+    elif opcao == 2:
+        task_manager.show_lista()
+    elif opcao == 0:
+        return False
+    else:
+        print("Opção inválida!")
+    return True
 
 def main():
     rodando = True
