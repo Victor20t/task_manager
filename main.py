@@ -10,6 +10,8 @@ def exibir_menu():
     print("Opções: ")
     print("1. Adicionar tarefa")
     print("2. Exibir lista de tarefas")
+    print("3. Remover tarefa")
+    print("4. Marcar tarefa como concluída")
     print("0. Sair")
 
 def executar_menu(opcao):
@@ -17,6 +19,10 @@ def executar_menu(opcao):
         task_manager.adicionar_tarefa()
     elif opcao == 2:
         task_manager.show_lista()
+    elif opcao == 3:
+        task_manager.remover_tarefa()
+    elif opcao == 4:
+        task_manager.marcar_como_concluida()
     elif opcao == 0:
         return False
     else:

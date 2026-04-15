@@ -1,3 +1,4 @@
+from ast import If
 import random
 
 listaDeTarefas = []
@@ -24,3 +25,22 @@ def adicionar_tarefa():
 def show_lista(): 
     for i in listaDeTarefas:
         print(f"- {i['id']}: {i['tarefa']} (Status: {'Concluída' if i['status'] else 'Pendente'})")
+
+
+def remover_tarefa():
+    print("----REMOVER TAREFA----")
+    id_con = int(input("digite aqui o id da tarefa: "))
+
+    remover = True 
+
+    while remover: 
+        listaDeTarefas.pop(id_con)
+        remover = input("deseja continua? ")
+        if remover.lower() != "sim":
+            remover = False
+        
+def marcar_como_concluida(id_tarefa):
+    print("---CONCLUIR TAREFA---")
+    id_tarefa = int(input("digite o id da tarefa: "))
+
+    
