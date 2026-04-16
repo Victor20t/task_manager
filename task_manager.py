@@ -1,5 +1,5 @@
-from ast import If
 import random
+import storage
 
 listaDeTarefas = []
 
@@ -20,9 +20,11 @@ def adicionar_tarefa():
     status = False 
     tarefa =  {"id": id, "tarefa":receber_tarefa(), "status": status}
     listaDeTarefas.append(tarefa)
+    storage.salvando_lista(listaDeTarefas)
 
 
 def show_lista(): 
+    listaDeTarefas  = storage.carregar_lista()
     for i in listaDeTarefas:
         print(f"- {i['id']}: {i['tarefa']} (Status: {'Concluída' if i['status'] else 'Pendente'})")
 
@@ -38,9 +40,16 @@ def remover_tarefa():
         remover = input("deseja continua? ")
         if remover.lower() != "sim":
             remover = False
+    storage.salvando_lista(listaDeTarefas)
         
-def marcar_como_concluida(id_tarefa):
-    print("---CONCLUIR TAREFA---")
-    id_tarefa = int(input("digite o id da tarefa: "))
+def concluir_tarefa():
+    print("----CONCLUIR TAREFA----")
+    id_c = int(input("digite o id da tarefa: "))
 
-    
+    for i in listaDeTarefas:
+        if i["id"] == id_c:
+            i["status"] = True
+            print("Tarefa marcada como concluída!")
+            return
+    print("Tarefa não encontrada!") 
+    storage.salvando_lista(listaDeTarefas)

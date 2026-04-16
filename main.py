@@ -1,12 +1,28 @@
 import task_manager
+import time
 
-print("LISTA DE TAREFAS SUPREMA")
+print("----LISTA DE TAREFAS SUPREMA----")
+print("Bem-vindo ao gerenciador de tarefas!"'\n')
+
+listas_dot = [".", "..", "..."]
+
+for i in listas_dot:
+    print("\rCarregando" + i, end="")
+    time.sleep(0.3)
+
+print("\nPronto!\n")
+task_manager.show_lista()
+
+def temporizador(): 
+    time.sleep(0.4)
 
 def receber_opcao():
+    temporizador()
     opcao = int(input("Digite uma opção: "))
     return opcao
 
 def exibir_menu():
+    temporizador()
     print("Opções: ")
     print("1. Adicionar tarefa")
     print("2. Exibir lista de tarefas")
@@ -22,7 +38,7 @@ def executar_menu(opcao):
     elif opcao == 3:
         task_manager.remover_tarefa()
     elif opcao == 4:
-        task_manager.marcar_como_concluida()
+        task_manager.concluir_tarefa()
     elif opcao == 0:
         return False
     else:
