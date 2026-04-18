@@ -1,36 +1,48 @@
 import task_manager
 import time
+import sys
 
-print("----LISTA DE TAREFAS SUPREMA----")
-print("Bem-vindo ao gerenciador de tarefas!"'\n')
+def animacao_carregamento():
+    frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+    for i in range(20):
+        print(f"\r  {frames[i % len(frames)]} Carregando tarefas...", end="", flush=True)
+        time.sleep(0.05)
+    print("\r  ✔ Pronto!                    ")
 
-listas_dot = [".", "..", "..."]
+def limpar_linha():
+    print()
 
-for i in listas_dot:
-    print("\rCarregando" + i, end="")
-    time.sleep(0.3)
+def separador(char="─", largura=40):
+    print(char * largura)
 
-print("\nPronto!\n")
-task_manager.show_lista()
-
-def temporizador(): 
-    time.sleep(0.4)
-
-def receber_opcao():
-    temporizador()
-    opcao = int(input("Digite uma opção: "))
-    return opcao
+def cabecalho():
+    separador("═")
+    print("       ✅  GERENCIADOR DE TAREFAS")
+    separador("═")
+    print()
 
 def exibir_menu():
-    temporizador()
-    print("Opções: ")
-    print("1. Adicionar tarefa")
-    print("2. Exibir lista de tarefas")
-    print("3. Remover tarefa")
-    print("4. Marcar tarefa como concluída")
-    print("0. Sair")
+    time.sleep(0.2)
+    separador()
+    print("  1 │ Adicionar tarefa")
+    print("  2 │ Exibir lista")
+    print("  3 │ Remover tarefa")
+    print("  4 │ Concluir tarefa")
+    print("  0 │ Sair")
+    separador()
+
+def receber_opcao():
+    try:
+        opcao = int(input("  → Opção: ").strip())
+        return opcao
+    except ValueError:
+        print("  ⚠ Digite um número válido!")
+        return -1
+    except (EOFError, KeyboardInterrupt):
+        return 0
 
 def executar_menu(opcao):
+    limpar_linha()
     if opcao == 1:
         task_manager.adicionar_tarefa()
     elif opcao == 2:
@@ -40,18 +52,30 @@ def executar_menu(opcao):
     elif opcao == 4:
         task_manager.concluir_tarefa()
     elif opcao == 0:
+        separador("═")
+        print("  Até logo! 👋")
+        separador("═")
+        time.sleep(0.5)
         return False
     else:
-        print("Opção inválida!")
+        print("  ⚠ Opção inválida! Escolha entre 0 e 4.")
     return True
 
 def main():
+    cabecalho()
+    animacao_carregamento()
+    limpar_linha()
+    task_manager.show_lista()
+
     rodando = True
-    while rodando:    
+    while rodando:
         exibir_menu()
         opcao = receber_opcao()
         rodando = executar_menu(opcao)
 
 if __name__ == "__main__":
-    main()
-
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\n  Saindo... Até logo! 👋\n")
+        sys.exit(0)
